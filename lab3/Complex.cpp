@@ -37,6 +37,8 @@ public:
 
     friend std::istream& operator>> (std::istream& in, Complex& complex);
     friend std::ostream& operator<< (std::ostream& out, const Complex& complex);
+
+    //TODO: meniu interactiv
 };
 
 Complex operator+  (Complex complex1, Complex complex2)
@@ -73,6 +75,7 @@ std::istream& operator>> (std::istream& in, Complex& complex)
 
 std::ostream& operator<< (std::ostream& out, const Complex& complex)
 {
+<<<<<<< HEAD
     //"a", "i*v", "-i*b", "a+i*b", "a-i*b"
     if(complex.m_real && complex.m_imaginary)
     {
@@ -92,12 +95,17 @@ std::ostream& operator<< (std::ostream& out, const Complex& complex)
     {
         out << complex.m_real;
     }
+=======
+    out << complex.m_real << ' ' << complex.m_imaginary;
+    //    "a", "i*a", "-i*a", "a+i*b", "a-i*b"
+>>>>>>> parent of 8ab7353... inceput meniu interactiv
     return out;
 }
 
-Complex* readNComplexNumbers(int &n)
+Complex* readNComplexNumbers()
 {
     std::cout << "Number of complex numbers to read:" << std::endl;
+    int n;
     std::cin >> n;
     std::cout << "Write n complex numbers." << std::endl;
     Complex *numbers = new Complex[n];
@@ -113,73 +121,24 @@ Complex* readNComplexNumbers(int &n)
     return numbers;
 }
 
-void printMenuOptions() {
-    std::cout << "1. Cititi, memorati si afisati n numere complexe." << std::endl;
-    std::cout << "2. Adunati 2 numere din cele citire mai devreme." << std::endl;
-    std::cout << "3. Rulati demo pentru si inmultire impartire." << std::endl;
-    std::cout << "4. Oprire" << std::endl;
-    std::cout << std::endl;
-}
-
-void interactiveMenu() {
-    std::cout << "Alegeti dintre urmatoarele optiuni: " << std::endl;
-    printMenuOptions();
-    int option = 0;
-    int exit_option = 4;
-    int n = 0;
-    Complex *numbers = nullptr;
-
-    std::cin >> option;
-    while(option != exit_option) {
-        if(option == 1)
-        {
-            numbers = readNComplexNumbers(n);
-        }
-        else if(option == 2)
-        {
-            std::cout << "Scrieti pozitiile celor 2 numere in lista:" << std::endl;
-            int poz1, poz2;
-            std::cin >> poz1 >> poz2;
-            if(poz1 >= n || poz2 >= n)
-            {
-                std::cout << "Pozitii invalide! Nu se poate aduna." << std::endl;
-            }
-            else
-            {
-                std::cout << numbers[poz1] + numbers[poz2];
-            }
-        }
-        else if(option == 3)
-        {
-            //TODO
-        }
-
-        //reafisam meniul
-        std::cout << std::endl;
-        printMenuOptions();
-        std::cin >> option;
-    }
-}
-
 int main() {
-//    Complex complex(1,2.5);
-//    complex.SetReal(5.2);
-//
-//    Complex complex2(complex);
-//    std::cout << complex2.GetReal() << ' ' << complex2.GetImaginary() << std::endl;
-//    std::cout << complex2.Abs() << std::endl;
-//    double x,y,z;
-//    z = x + y;
+    Complex complex(1,2.5);
+    complex.SetReal(5.2);
+
+    Complex complex2(complex);
+    std::cout << complex2.GetReal() << ' ' << complex2.GetImaginary() << std::endl;
+    std::cout << complex2.Abs() << std::endl;
+    double x,y,z;
+    z = x + y;
 
     //eroare: de explicat peste cateva saptamani in detaliu, daca e nevoie
 //    Complex c3(complex + complex2);
 
-//    std::cout << (complex + complex2).GetReal() << ' ' << (complex + complex2).GetImaginary() << std::endl;
+    std::cout << (complex + complex2).GetReal() << ' ' << (complex + complex2).GetImaginary() << std::endl;
 
 //    Complex c4;
 //    std::cin >> c4;
 //    std::cout << c4;
-//    readNComplexNumbers();
-    interactiveMenu();
+    readNComplexNumbers();
     return 0;
 }
