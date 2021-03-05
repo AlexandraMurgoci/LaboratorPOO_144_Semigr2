@@ -31,12 +31,36 @@ public:
 //    }
     friend Complex operator+ (Complex complex1, Complex complex2);
 
-    //TODO: operatorul *
+    friend Complex operator*(Complex c1, Complex c2);
 
     //TODO: operatorul /
+    friend Complex operator/(Complex c1, Complex c2);
 
-    friend std::istream& operator>> (std::istream& in, Complex& complex);
-    friend std::ostream& operator<< (std::ostream& out, const Complex& complex);
+    friend std::istream& operator>> (std::istream& in, Complex& complex)
+    {
+        in >> complex.m_real >> complex.m_imaginary;
+        return in;
+    }
+    friend std::ostream& operator<< (std::ostream& out, const Complex& nr)
+    {
+        if (nr.m_real!=0 && nr.m_imaginary!=0)
+        {
+            if (nr.m_imaginary > 0)
+                out << nr.m_real << "+i*" << nr.m_imaginary;
+            else
+                out << nr.m_real << "-i*" << -nr.m_imaginary;
+        }
+        else if (nr.m_imaginary == 0)
+            out << nr.m_real;
+        else
+        {
+            if (nr.m_imaginary > 0)
+                out << "i*" << nr.m_imaginary;
+            else
+                out << "-i*" << -nr.m_imaginary;
+        }
+        return out;
+    }
 };
 
 Complex operator+  (Complex complex1, Complex complex2)
@@ -45,6 +69,25 @@ Complex operator+  (Complex complex1, Complex complex2)
     result.m_real = complex1.m_real + complex2.m_real;
     result.m_imaginary = complex1.m_imaginary + complex2.m_imaginary;
     return result;
+}
+
+Complex operator*(Complex nr1, Complex nr2)
+{
+    Complex rez;
+    rez.m_real=nr1.m_real*nr2.m_real-nr1.m_imaginary*nr2.m_imaginary;
+    rez.m_imaginary=nr1.m_real*nr2.m_imaginary+nr1.m_imaginary*nr2.m_real;
+    return rez;
+}
+
+Complex operator/(Complex nr1, Complex nr2)
+{
+    Complex rez;
+    Complex conj(nr2.m_real,-nr2.m_imaginary);
+    rez=nr1*conj;
+    double numitor=(nr2.m_real*nr2.m_real+nr2.m_imaginary*nr2.m_imaginary);
+    rez.m_real/=numitor;
+    rez.m_imaginary/=numitor;
+    return rez;
 }
 
 std::istream& operator>> (std::istream& in, Complex& complex)
