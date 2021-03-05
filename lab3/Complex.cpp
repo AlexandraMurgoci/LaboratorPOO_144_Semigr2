@@ -118,6 +118,7 @@ void interactiveMenu() {
         else if(option == 3)
         {
             //TODO
+            //de completat dupa terminarea operatorilor
         }
 
         //reafisam meniul
