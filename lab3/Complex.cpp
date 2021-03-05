@@ -31,13 +31,31 @@ public:
 //    }
     friend Complex operator+ (Complex complex1, Complex complex2);
 
-    //TODO: operatorul *
+    friend Complex operator* (Complex complex1, Complex complex2);
+
+    friend Complex operator/ (Complex complex1, Complex complex2);
 
     //TODO: operatorul /
 
     friend std::istream& operator>> (std::istream& in, Complex& complex);
     friend std::ostream& operator<< (std::ostream& out, const Complex& complex);
 };
+Complex operator/  (Complex complex1, Complex complex2)
+{
+    Complex result;
+    result.m_real = (complex1.m_real * complex2.m_real + complex1.m_imaginary * complex2.m_imaginary)/(complex2.m_real*complex2.m_real + complex2.m_imaginary * complex2.m_imaginary);
+    result.m_imaginary = (complex1.m_imaginary * complex2.m_real - complex2.m_imaginary * complex1.m_real)/(complex2.m_real*complex2.m_real + complex2.m_imaginary * complex2.m_imaginary);
+    return result;
+}
+
+
+Complex operator*  (Complex complex1, Complex complex2)
+{
+    Complex result;
+    result.m_real = complex1.m_real * complex2.m_real - complex1.m_imaginary * complex2.m_imaginary;
+    result.m_imaginary = complex1.m_imaginary * complex2.m_real + complex2.m_imaginary * complex1.m_real;
+    return result;
+}
 
 Complex operator+  (Complex complex1, Complex complex2)
 {
@@ -55,9 +73,18 @@ std::istream& operator>> (std::istream& in, Complex& complex)
 
 std::ostream& operator<< (std::ostream& out, const Complex& complex)
 {
-    //TODO:
-    out << complex.m_real << ' ' << complex.m_imaginary;
-    //    "a", "i*a", "-i*a", "a+i*b", "a-i*b"
+
+    if(complex.m_imaginary == 0)
+        out<<complex.m_real;
+    else if(complex.m_real == 0&&complex.m_imaginary<0)
+        out<<"-i*"<<complex.m_imaginary*(-1);
+    else if(complex.m_real == 0 && complex.m_imaginary>0)
+        out<<"i*"<<complex.m_imaginary;
+    else if(complex.m_imaginary<0)
+        out<<complex.m_real<<"-i*"<<complex.m_imaginary*(-1);
+    else if(complex.m_imaginary>0)
+        out<<complex.m_real<<"+i*"<<complex.m_imaginary;
+
     return out;
 }
 
@@ -117,7 +144,13 @@ void interactiveMenu() {
         }
         else if(option == 3)
         {
-            //TODO
+            std::cout <<"Scrieti 3 numere complexe x,y,z si va afisa x*y/z:"<<std::endl;
+            Complex x,y,z;
+            std::cin>>x>>y>>z;
+            Complex result;
+            result = x * y ;
+            result = result / z;
+            std::cout<<result;
         }
 
         //reafisam meniul
