@@ -30,10 +30,13 @@ public:
 //        return result;
 //    }
     friend Complex operator+ (Complex complex1, Complex complex2);
-
     //TODO: operatorul *
-
+    friend Complex operator* (Complex complex1, Complex complex2);
     //TODO: operatorul /
+    friend Complex operator/ (Complex complex1, Complex complex2);
+    
+
+    
 
     friend std::istream& operator>> (std::istream& in, Complex& complex);
     friend std::ostream& operator<< (std::ostream& out, const Complex& complex);
@@ -46,7 +49,20 @@ Complex operator+  (Complex complex1, Complex complex2)
     result.m_imaginary = complex1.m_imaginary + complex2.m_imaginary;
     return result;
 }
+//operatorul *
+Complex operator* (Complex complex1, Complex complex2)
+{
+    Complex result;
+    result.m_real = complex1.m_real * complex2.m_real - complex1.m_imaginary * complex2.m_imaginary;
+    result.m_imaginary = complex1.m_real * complex2.m_imaginary + complex2.m_real * complex1.m_imaginary;
+    return result;
+}
+//operatorul /
+Complex operator/ (Complex complex1, Complex complex2)
+{
+    Complex result;
 
+}
 std::istream& operator>> (std::istream& in, Complex& complex)
 {
     in >> complex.m_real >> complex.m_imaginary;
@@ -149,3 +165,15 @@ int main() {
     interactiveMenu();
     return 0;
 }
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
