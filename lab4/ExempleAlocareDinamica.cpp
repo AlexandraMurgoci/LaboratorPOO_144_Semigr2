@@ -81,6 +81,7 @@ public:
     {
         m_next = node;
     }
+    Node* GetNext() {return m_next;}
 
     int GetInfo() {return m_info;}
     void SetInfo(int info) {m_info = info;}
@@ -94,6 +95,13 @@ public:
 
 class ListExample {
     Node *m_first;
+    
+    Node * GetLast()
+    {
+        Node *iterator = m_first;
+        while(iterator->GetNext() != nullptr) iterator = iterator->GetNext();
+        return iterator;
+    }
 
 public:
     ListExample(int info)
@@ -101,19 +109,41 @@ public:
         m_first = new Node(info);
     }
 
-    //TODO
-    void Add(int info);
-    void Display();
+    void Add(int info)
+    {
+        Node *last = GetLast();
+        last->SetNext(new Node(info));
+    }
+
+    void Display()
+    {
+        Node *iterator = m_first;
+        while (iterator != nullptr)
+        {
+            std::cout << iterator->GetInfo() << ' ';
+            iterator = iterator->GetNext();
+        }
+    }
     ~ListExample()
     {
         //aici trebuie sa ne asiguram ca se elibereaza memoria pentru toate nodurile din lista
+        std::cout << "Destructor ListExample" << std::endl;
+        Node *iterator = m_first;
+        while (iterator != nullptr)
+        {
+            Node *auxToBeDeleted = iterator;
+            iterator = iterator->GetNext();
+            delete auxToBeDeleted;
+        }
     }
 };
 
 void demoListExample() {
-    //TODO
-    //creez o lista
-    //adaug 2 elemente
+    ListExample list(1);
+    list.Add(2);
+    list.Add(3);
+    list.Display();
+    std::cout << std::endl;
 }
 
 int main() {
