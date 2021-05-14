@@ -119,6 +119,36 @@ public:
     friend istream &operator>>(istream& in, Zbor& zbor);
     friend ostream &operator<<(ostream& out, const Zbor& zbor);
 };
+istream &operator>>(istream& in, Zbor& zbor)
+{
+    cout << "Introduceti destinatia.\n";
+    in >> zbor.destinatie;
+    cout << "Introduceti data.\n";
+    in >> zbor.data;
+    cout << "Introduceti ora.\n";
+    in >> zbor.ora;
+    cout << "Introduceti durata.\n";
+    in >> zbor.durata;
+    cout << "Introduceti pret.\n";
+    in >> zbor.pret;
+
+    return in;
+}
+
+ostream &operator<<(ostream& out, const Zbor& zbor)
+{
+
+    out << "Destinatia: " << zbor.destinatie << "\n";
+    out << "Data: " << zbor.data << "\n";
+    out << "Ora: " << zbor.ora << "\n";
+    out << "Durata: " << zbor.durata << "\n";
+    out << "Pret: " << zbor.pret << "\n";
+
+
+
+    return out;
+}
+
 int Zbor::s_next_id = 1;
 
 class ZborLowCost: public Zbor
