@@ -226,6 +226,16 @@ istream &operator>>(istream& in, ZborLowCostCharter& zbor)
 //TODO
 //ZBOR CU ESCALE CARE E SI CHARTER
 
+class ZborCuEscaleCharter: public ZborCuEscale, Charter
+{
+public:
+    ZborCuEscaleCharter() {}
+    ~ZborCuEscaleCharter() {}
+
+    friend istream &operator >> (istream& in, ZborCuEscaleCharter& zbor);
+    friend ostream &operator << (ostream& out, const ZborCuEscaleCharter& zbor);
+};
+
 class ZborCharter: public Zbor, Charter
 {
 public:
