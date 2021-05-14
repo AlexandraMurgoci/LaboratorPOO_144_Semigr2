@@ -182,6 +182,18 @@ public:
     friend ostream &operator << (ostream& out, const ZborCuEscaleCharter& zbor);
 };
 
+istream &operator >>(istream& in, ZborCuEscaleCharter& zbor)
+{
+    in >> dynamic_cast<ZborCuEscaleCharter&>(zbor);
+    return in;
+}
+
+ostream &operator <<(ostream& out, const ZborCuEscaleCharter& zbor)
+{
+    out << dynamic_cast<const ZborCuEscaleCharter&>(zbor);
+    return out;
+}
+
 class ZborCharter: public Zbor, Charter
 {
 public:
