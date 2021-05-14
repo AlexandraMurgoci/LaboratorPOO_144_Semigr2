@@ -182,16 +182,46 @@ public:
     friend ostream &operator<<(ostream& out, const ZborLowCostCharter& zbor);
 };
 
+void AfiseazaOptiuniMeniu() {
+    cout << "1. Adauga o companie" << endl
+    << "2. Adauga un zbor" << endl
+    << "3. Afiseaza toate companiile" << endl
+    << "4. Afiseaza toate zborurile" <<endl;
+}
 void MeniuInteractiv(vector<Companie*>& companii, vector<Zbor*> zboruri)
 {
-    //ADAUGARE/STERGERE COMPANII
-    //ADAUGARE/STERGERE ZBORURI
-    //AFISARE COMPANII
-    //AFISARE ZBORURI
+    int option = -1;
+    int stop_option = 0;
+    while(option != 0)
+    {
+        AfiseazaOptiuniMeniu();
+        cin >> option;
+        if(option == 1)
+        {
+            //TODO
+        }
+        else if(option == 2)
+        {
+            //TODO
+        }
+        else if(option == 3)
+        {
+            //TODO
+        }
+        else if(option == 4)
+        {
+            //TODO
+        }
+    }
+
+    //eliberare memorie
+    for(int i=0; i < zboruri.size(); i++) delete zboruri[i];
+    for(int i=0; i < companii.size(); i++) delete companii[i];
 }
 
 int main() {
     vector<Companie*> companii;
     vector<Zbor*> zboruri;
+    MeniuInteractiv(companii, zboruri);
     return 0;
 }
