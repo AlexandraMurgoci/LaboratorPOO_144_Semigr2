@@ -238,13 +238,15 @@ public:
 
 istream &operator >>(istream& in, ZborCuEscaleCharter& zbor)
 {
-    in >> dynamic_cast<ZborCuEscaleCharter&>(zbor);
+    in >> dynamic_cast<ZborCuEscale&>(zbor);
+    in >> dynamic_cast<Charter&>(zbor);
     return in;
 }
 
 ostream &operator <<(ostream& out, const ZborCuEscaleCharter& zbor)
 {
-    out << dynamic_cast<const ZborCuEscaleCharter&>(zbor);
+    out << dynamic_cast<const ZborCuEscale&>(zbor);
+    out << dynamic_cast<const Charter&>(zbor);
     return out;
 }
 
