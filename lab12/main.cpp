@@ -133,6 +133,30 @@ public:
     friend ostream &operator<<(ostream& out, const ZborLowCost& zbor);
 };
 
+ZborLowCost operator>>(istream& in, ZborLowCost& zbor)
+{
+    in>>zbor.m_id;
+    in>>zbor.destinatie;
+    in>>zbor.data;
+    in>>zbor.ora;
+    in>>zbor.durata;
+    in>>zbor.pret;
+    in>>zbor.greutate_maxima_bagaj_de_cala;
+    return in;
+}
+
+ZborLowCost operator<<(ostream& out, const ZborLowCost& zbor)
+{
+    out<<"Id: "<<zbor.m_id;
+    out<<"Destinatie: "<<zbor.destinatie;
+    out<<"Data: "<<zbor.data;
+    out<<"Ora: "<<zbor.ora;
+    out<<"Durata: "<<zbor.durata;
+    out<<"Pret: "<<zbor.pret;
+    out<<"Greutate maxima bagaj de cala: "<<zbor.greutate_maxima_bagaj_de_cala;
+    return out;
+}
+
 class ZborCuEscale: public Zbor
 {
 protected:
