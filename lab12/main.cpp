@@ -161,14 +161,14 @@ public:
 istream &operator>>(istream& in, Charter& zbor)
 {
     cout<< "Operator turism: ";
-    in >> m_operator_turism ;
+    in >> zbor.m_operator_turism ;
     cout<< "Pret suplimentar: ";
-    in >> m_pret_suplimentar;
+    in >> zbor.m_pret_suplimentar;
     return in;
 }
 ostream &operator<<(ostream& out, const Charter& zbor)
 {
-    out << m_operator_turism << " " << m_pret_suplimentar;
+    out << zbor.m_operator_turism << " " << zbor.m_pret_suplimentar;
     return out;
 }
 class ZborLowCostCharter: public ZborLowCost, Charter
