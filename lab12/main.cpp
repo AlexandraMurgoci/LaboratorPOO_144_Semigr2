@@ -158,7 +158,19 @@ public:
     friend istream &operator>>(istream& in, Charter& zbor);
     friend ostream &operator<<(ostream& out, const Charter& zbor);
 };
-
+istream &operator>>(istream& in, Charter& zbor)
+{
+    cout<< "Operator turism: ";
+    in >> m_operator_turism ;
+    cout<< "Pret suplimentar: ";
+    in >> m_pret_suplimentar;
+    return in;
+}
+ostream &operator<<(ostream& out, const Charter& zbor)
+{
+    out << m_operator_turism << " " << m_pret_suplimentar;
+    return out;
+}
 class ZborLowCostCharter: public ZborLowCost, Charter
 {
 public:
@@ -168,6 +180,18 @@ public:
     friend istream &operator>>(istream& in, ZborLowCostCharter& zbor);
     friend ostream &operator<<(ostream& out, const ZborLowCostCharter& zbor);
 };
+istream &operator>>(istream& in, ZborLowCostCharter& zbor)
+{
+    in >> dynamic_cast<ZborLowCost&>(zbor);
+    in >> dynamic_cast<Charter&>(zbor);
+    return in;
+}
+ ostream &operator<<(ostream& out, const ZborLowCostCharter& zbor)
+ {
+     out << dynamic_cast<const ZborLowCost&>(zbor);
+     out << dynamic_cast<const Charter&>(zbor);
+     return out;
+ }
 
 //TODO
 //ZBOR CU ESCALE CARE E SI CHARTER
